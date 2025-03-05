@@ -1,0 +1,33 @@
+name: Run Python Script
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # اجرا هر 10 دقیقه
+    # می‌توانید رویدادهای دیگری هم اضافه کنید، مثل:
+    # push:
+    #   branches:
+    #     - main
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest  # نوع ماشین مجازی
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'  # نسخه پایتون
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests schedule persiantools
+
+    - name: Run script
+      env:  # متغیرهای محیطی برای توکن و چت آیدی (به صورت Secrets تعریف می‌شوند)
+        TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: python your_script_name.py  # نام فایل پایتون شما
