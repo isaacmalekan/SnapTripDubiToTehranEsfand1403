@@ -28,6 +28,6 @@ jobs:
 
     - name: Run script
       env:  # متغیرهای محیطی برای توکن و چت آیدی (به صورت Secrets تعریف می‌شوند)
-        TELEGRAM_TOKEN: ${{ secrets.7563816609:AAG9tn0ESiCpO4R-eg_ifX4oJ2K6riJlMzk }}
-        TELEGRAM_CHAT_ID: ${{ secrets.148534790 }}
+        TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: python your_script_name.py  # نام فایل پایتون شما
